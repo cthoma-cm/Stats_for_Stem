@@ -1,3 +1,4 @@
+
 library(tidyverse)
 library(openintro)
 
@@ -30,3 +31,16 @@ lax_flights |>
   summarise(mean_dd   = mean(dep_delay), 
             median_dd = median(dep_delay), 
             n         = n())
+
+
+### Exercise 2: Create a new data frame that includes flights headed to SFO in February, and save this data frame as sfo_feb_flights. How many flights meet these criteria?
+#Answer is 68 flights
+
+#filter function
+
+sfo_feb_flights <- nycflights |>
+  filter(dest == "SFO", month == 2)
+
+View(sfo_feb_flights)
+
+dim(sfo_feb_flights)
