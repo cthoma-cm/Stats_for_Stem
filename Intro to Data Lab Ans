@@ -11,9 +11,22 @@ names(nycflights)
 glimpse(nycflights)
 
 #Create a Histrogram (each with a different bin width)
+
 ggplot(data = nycflights, aes(x = dep_delay)) +
   geom_histogram(binwidth = 15)
 
 ggplot(data = nycflights, aes(x = dep_delay)) +
   geom_histogram(binwidth = 150)
 
+# Exercise 1
+
+lax_flights <- nycflights |>
+  filter(dest == "LAX")
+ggplot(data = lax_flights, aes(x = dep_delay)) +
+  geom_histogram()
+# Summary statistics: Some useful function calls for summary statistics for a single numerical variable:
+
+lax_flights |>
+  summarise(mean_dd   = mean(dep_delay), 
+            median_dd = median(dep_delay), 
+            n         = n())
