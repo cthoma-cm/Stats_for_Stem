@@ -1,0 +1,19 @@
+library(tidyverse)
+library(openintro)
+
+data(nycflights)
+
+names(nycflights)
+
+#This will give you discription of the data variables
+?nycflights
+
+glimpse(nycflights)
+
+#Create a Histrogram (each with a different bin width)
+ggplot(data = nycflights, aes(x = dep_delay)) +
+  geom_histogram(binwidth = 15)
+
+ggplot(data = nycflights, aes(x = dep_delay)) +
+  geom_histogram(binwidth = 150)
+
