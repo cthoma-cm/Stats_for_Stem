@@ -52,3 +52,48 @@ dim(sfo_feb_flights)
 ggplot(data = sfo_feb_flights, aes(x = arr_delay)) +
   geom_histogram(binwidth = 15)
 
+### Exercise 4. Calculate the median and interquartile range for arr_delays of flights in in the sfo_feb_flights data frame, grouped by carrier. Which carrier has the most variable arrival delays?
+
+sfo_feb_flights |>
+  group_by(origin) |>
+  summarise(median_dd = median(dep_delay), iqr_dd = IQR(dep_delay), n_flights = n())
+
+# Answer is 
+
+### Exercise 5 Suppose you really dislike departure delays and you want to schedule your travel in a month that minimizes your potential departure delay leaving NYC. 
+One option is to choose the month with the lowest mean departure delay. Another option is to choose the month with the lowest median departure delay. What are the pros and cons of these two choices?
+
+nycflights <- nycflights |>
+  mutate(dep_type = ifelse(dep_delay < 5, "on time", "delayed"))
+
+nycflights |>
+  group_by(origin) |>
+  summarise(ot_dep_rate = sum(dep_type == "on time") / n()) |>
+  arrange(desc(ot_dep_rate))
+
+### Exercise 6 If you were selecting an airport simply based on on time departure percentage, which NYC airport would you choose to fly out of?
+
+# Answer is LGA
+
+
+ggplot(data = nycflights, aes(x = origin, fill = dep_type)) +
+  geom_bar()
+
+### Exercise 7 Mutate the data frame so that it includes a new variable that contains the average speed, avg_speed traveled by the plane for each flight (in mph). 
+#Hint: Average speed can be calculated as distance divided by number of hours of travel, and note that air_time is given in minutes.
+
+nycflights <- transform(nycflights, avg_speed = nycflights$distance / nycflights$air_time*60)
+View(nycflights)
+
+
+### Exercise 8 Make a scatterplot of avg_speed vs. distance. Describe the relationship between average speed and distance. Hint: Use geom_point().
+
+ggplot(data = nycflights, aes(x = avg_speed, y = distance)) +
+  geom_point()
+
+### Excercise 9 Replicate the following plot. Hint: The data frame plotted only contains flights from American Airlines, Delta Airlines, and United Airlines, and the points are colored by carrier. 
+Once you replicate the plot, determine (roughly) what the cutoff point is for departure delays where you can still expect to get to your destination on time.
+
+subset_carrier <- nycflights |> filter(carrier == "AA" | carrier == "DL" | carrier == "UA" )
+ggplot(data = subset_carrier, aes(x = dep_delay, y = arr_delay, color = factor(carrier))) +
+  geom_point()
