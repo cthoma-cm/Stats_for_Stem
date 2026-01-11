@@ -44,3 +44,11 @@ sfo_feb_flights <- nycflights |>
 View(sfo_feb_flights)
 
 dim(sfo_feb_flights)
+
+### Exercise 3 Describe the distribution of the arrival delays of these flights using a histogram and appropriate summary statistics. Hint: The summary statistics you use should depend on the shape of the distribution.
+
+#Answer is Roughly bell shaped, though rightly skewed.
+
+ggplot(data = sfo_feb_flights, aes(x = arr_delay)) +
+  geom_histogram(binwidth = 15)
+
