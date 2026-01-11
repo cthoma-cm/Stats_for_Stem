@@ -1,0 +1,19 @@
+# Get the object (Data File)
+# Read in with tidytuesdayR package 
+install.packages("tidytuesdayR")
+library("tidytuesdayR")
+
+# This loads the readme and all the datasets for the week of interest
+
+# Either ISO-8601 date or year/week works!
+
+tuesdata <- tidytuesdayR::tt_load('2021-04-20')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 17)
+
+netflix <- tuesdata$netflix
+
+#Provides statistical overvirew of the object
+summary(netflix)
+
+#Opens the entire object, must be capital V
+View(netflix)
