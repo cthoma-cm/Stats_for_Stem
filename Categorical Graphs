@@ -65,6 +65,13 @@ col_percentages <- prop.table(housing_table, 2) * 100
 print(row_percentages)
 print(col_percentages)
 
+# Calculate percentages for relationship status by home preference
+percentage_data <- housing_data %>%
+  group_by(home, status) %>%
+  summarise(count = n()) %>%
+  group_by(home) %>%
+  mutate(percentage = count / sum(count) * 100)
+
 # Create a pie chart with percentages for relationship status by home preference
 ggplot(percentage_data, aes(x = "", y = percentage, fill = status)) +
   geom_bar(width = 1, stat = "identity", position = "fill") +
