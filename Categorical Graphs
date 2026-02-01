@@ -27,8 +27,22 @@ prop.table(table2)
 home_data <- as.data.frame(table(housing_data$home))
 colnames(home_data) <- c("home", "count")
 # Create a data frame for relationship status
-housing_data <- as.data.frame(table(status_data$status))
+status_data <- as.data.frame(table(housing_data$status))
 colnames(status_data) <- c("status", "count")
 
 home_data
 status_data
+
+# Create the bar plots
+p1 <- ggplot(home_data, aes(x = home, y = count, fill = home)) +
+  geom_bar(stat = "identity") +
+  labs(y = "Number of participants", title = "Distribution by Home Preference") +
+  theme_minimal()
+print(p1)
+
+p2 <- ggplot(status_data, aes(x = status, y = count, fill = status)) +
+  geom_bar(stat = "identity") +
+  labs(y = "Number of participants", title = "Distribution by Relationship Status") +
+  theme_minimal()
+
+p2
