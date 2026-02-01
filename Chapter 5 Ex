@@ -42,3 +42,12 @@ describe(us_crime_rates$violent)
 
 #Calculate a 5 Output Summary
 summary(us_crime_rates$violent)
+
+#Now create a box plot of Violent Crime
+{r}
+boxplot(us_crime_rates$violent, main = "Box Plot of Violent Crimes", ylab = " Violent Crime")
+
+Now we create a Histogram of Violent Crime Rates
+#breaks allows you to pick the number of bins you want, exmaple breaks = 12
+hist(us_crime_rates$violent, main = "Histogram of Violent Crime Rates", xlab = "Violent Crime Rate", ylab = "Frequency")
+
