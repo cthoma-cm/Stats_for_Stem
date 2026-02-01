@@ -1,0 +1,44 @@
+install.packages("usdata")
+install.packages("devtools")
+
+
+library(devtools)
+library(usdata)
+install_github("OpenIntroStat/usdata")
+library(ggplot2)
+
+#Load Data from US data file crime data
+data(package = "usdata")
+data(us_crime_rates)
+
+head(us_crime_rates)
+
+#Graph a scatter plot
+ggplot(us_crime_rates, aes(x = year, y = violent)) + geom_point() + labs(title = "Violent Crime by Year", x = "Year", y = "Violent Crime")
+
+#Calcuate Summary Statistics
+#First we need to load packages "psych". The psych package has been developed at Northwestern University to include functions most useful for personality and psychological research
+
+install.packages("psych")
+library(psych)
+
+#We are now going to calculate the following summary statistics using "describe" in r
+#A data.frame of the relevant statistics:
+#item name
+#item number
+#number of valid cases
+#mean
+#standard deviation
+#trimmed mean (with trim defaulting to .1)
+#median (standard or interpolated
+#mad: median absolute deviation (from the median).
+#minimum
+#maximum
+#skew
+#kurtosis
+#standard error
+
+describe(us_crime_rates$violent)
+
+#Calculate a 5 Output Summary
+summary(us_crime_rates$violent)
