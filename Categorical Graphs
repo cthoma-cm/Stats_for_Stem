@@ -1,0 +1,34 @@
+# For installing library packages
+install.packages("ggplot2")
+install.packages("gridExtra")
+
+# For loading library
+library("ggplot2")
+library("gridExtra")
+
+# Create data 
+set.seed(10)
+home = sample(c('Buy', 'Rent'), 380, replace = TRUE)
+status= sample(c('Married', 'Single', 'Dating'), 380, replace = TRUE)
+housing_data = data.frame(home = as.factor(home), status = as.factor(status))
+
+head(housing_data,10)
+
+#frequency table
+table1 = table(housing_data$home)
+table2 = table(housing_data$status)
+print(table1)
+print(table2)
+
+prop.table(table1)
+prop.table(table2)
+
+# Create a data frame for home preference
+home_data <- as.data.frame(table(housing_data$home))
+colnames(home_data) <- c("home", "count")
+# Create a data frame for relationship status
+housing_data <- as.data.frame(table(status_data$status))
+colnames(status_data) <- c("status", "count")
+
+home_data
+status_data
